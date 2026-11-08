@@ -1,0 +1,16 @@
+{
+  "name": "payguard",
+  "version": "1.0.0",
+  "description": "PayGuard — AI-verified invoice payments. An agentic commerce safety layer: untrusted invoices are screened, verified against the source, and only then paid through PayPal. PayPal AI Hackathon entry.",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "express": "^4.19.2",
+    "dotenv": "^16.4.5"
+  },
+  "license": "MIT"
+}

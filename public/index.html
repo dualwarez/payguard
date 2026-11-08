@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PayGuard — AI-verified invoice payments, powered by PayPal + Clocked</title>
+  <meta name="description" content="Paste an untrusted invoice. PayGuard screens it for fraud, verifies every field against the source, and only then creates a PayPal order for your approval.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>💳</text></svg>">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">💳</span>
+      <div>
+        <h1>PayGuard</h1>
+        <p class="tagline">AI-verified invoice payments — <strong>PayPal</strong> × <strong>Clocked</strong></p>
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="pill sandbox">SANDBOX</span>
+      <a class="github-link" href="https://github.com/dualwarez/payguard" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </header>
+
+  <main class="layout">
+    <!-- LEFT: input -->
+    <section class="panel input-panel">
+      <div class="panel-head">
+        <h2>1 · The invoice you received</h2>
+        <p class="hint">Vendor emails are untrusted. Paste the raw invoice — PayGuard treats it as hostile until proven safe.</p>
+      </div>
+      <textarea id="invoice-input" spellcheck="false" placeholder="Paste the invoice / vendor email here…"></textarea>
+      <div class="samples" id="samples">
+        <span class="samples-label">Try:</span>
+      </div>
+
+      <div class="panel-head second">
+        <h2>2 · Your purchase order (optional, recommended)</h2>
+        <p class="hint">PayGuard cross-checks the invoice against your PO before any money moves.</p>
+      </div>
+      <textarea id="po-input" class="small" spellcheck="false" placeholder="Paste your purchase order here…"></textarea>
+
+      <div class="actions">
+        <button id="run-btn" class="btn primary" disabled>Verify invoice ▶</button>
+        <button id="clear-btn" class="btn ghost">Clear</button>
+      </div>
+      <div class="actions">
+        <button id="pay-btn" class="btn pay" disabled hidden>Authorize payment with PayPal →</button>
+      </div>
+      <div id="pay-status" class="pay-status hidden"></div>
+    </section>
+
+    <!-- RIGHT: results -->
+    <section class="panel results-panel">
+      <div class="panel-head">
+        <h2>Verification pipeline</h2>
+        <p class="hint">Every step is a live AI call. Fraud stops the pipeline; a verified invoice unlocks the PayPal payment.</p>
+      </div>
+      <ol class="pipeline" id="pipeline"></ol>
+      <div id="alert-box" class="alert hidden"></div>
+
+      <div class="results-tabs" id="tabs" role="tablist">
+        <button class="tab active" data-tab="risk" role="tab">Risk report</button>
+        <button class="tab" data-tab="record" role="tab">Invoice record</button>
+        <button class="tab" data-tab="compare" role="tab">PO cross-check</button>
+      </div>
+      <div class="tab-body" id="tab-risk"></div>
+      <div class="tab-body hidden" id="tab-record"></div>
+      <div class="tab-body hidden" id="tab-compare"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><strong>PayGuard</strong> — PayPal AI Hackathon entry. AI screening &amp; verification by <strong>Clocked</strong> (Guard · Protect · Decide · Extract · Fill · Verify · Compare), payments by the <strong>PayPal Orders API</strong> (sandbox). Human approval required before any payment — that's the point.</p>
+  </footer>
+
+  <script src="/app.js"></script>
+</body>
+</html>
